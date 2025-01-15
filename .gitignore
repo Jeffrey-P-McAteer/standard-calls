@@ -1,0 +1,14 @@
+target
+bin
+obj
+build
+data
+tmp
+temp
+__pycache__
+py-env
+.py-env
+pyenv
+.pyenv
+
+

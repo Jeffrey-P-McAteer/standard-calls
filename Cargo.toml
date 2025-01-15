@@ -1,0 +1,10 @@
+[workspace]
+resolver = "2"
+members = [
+  "standard_calls_lib",
+  "standard_calls_server",
+  "standard_calls_client",
+]
+
+
+
