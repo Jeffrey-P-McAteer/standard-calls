@@ -3,13 +3,19 @@
 version = 3
 
 [[package]]
-name = "standard_calls_client"
+name = "standard_calls"
 version = "0.1.0"
 
 [[package]]
-name = "standard_calls_lib"
+name = "standard_calls_client"
 version = "0.1.0"
+dependencies = [
+ "standard_calls",
+]
 
 [[package]]
 name = "standard_calls_server"
 version = "0.1.0"
+dependencies = [
+ "standard_calls",
+]

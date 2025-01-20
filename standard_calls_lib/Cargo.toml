@@ -1,5 +1,5 @@
 [package]
-name = "standard_calls_lib"
+name = "standard_calls"
 version = "0.1.0"
 edition = "2021"
 
