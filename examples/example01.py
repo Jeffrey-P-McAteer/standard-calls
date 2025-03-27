@@ -4,6 +4,8 @@
 # ]
 # ///
 
+# neighbors.toml will need to list neighbors, list if clients can ask for the list of our own neighbors,...
+# identity.toml will have to identify hardware or software PKI capabilities.
 # on import read /etc/standard-calls/neighbors.toml, $STANDARD_CALLS_NEIGHBORS_TOML, ~/.config/standard-calls/neighbors.toml
 # on import read /etc/standard-calls/identity.toml, $STANDARD_CALLS_IDENTITY_TOML, ~/.config/standard-calls/identity.toml
 import standard_calls
@@ -14,6 +16,11 @@ standard_calls.configure_identity(standard_calls.Anonymous_PKI)
 for neighbor in standard_calls.get_neighbors():
     if neighbor.is_alive():
         print(f'{neighbor} is online + we can call functions on it!')
+        # Neighbors by default allow transitive connections through themselves, and recieving sides are free to add
+        # transitive neighbors to their own list of neighbors.
+        # <neighbor>.get_neighbors will not return the calling Neighbor to make avoidance of circular dependency chains easier.
+        for sub_neighbor in neighbor.get_neighbors():
+            pass # Should get_neighbors() take an argument for depth? Yeah that sounds good.
     else:
         print(f'{neighbor} is listed in a config file but is offline :(')
 
