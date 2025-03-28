@@ -8,7 +8,6 @@ import os
 import sys
 import shutil
 import subprocess
-import distutils.ccompiler
 import glob
 import zipfile
 import sysconfig
@@ -38,7 +37,16 @@ for req_bin in ['cargo', 'uv']:
 subprocess.run(['cargo', 'build', '--release'], check=True)
 
 # Copy the C library to *.pyd which python will look up; host_c_dylib_extension resolves to '.dll' on windows and '.so' on linux (mac untested)
-host_c_dylib_extension = distutils.ccompiler.new_compiler().shared_lib_extension
+host_c_dylib_extension = None
+if sys.platform == "linux" or sys.platform == "linux2":
+    host_c_dylib_extension = '.so'
+elif sys.platform == "darwin":
+    host_c_dylib_extension = '.dylib'
+elif sys.platform == "win32":
+    host_c_dylib_extension = '.dll'
+else:
+    raise Exception(f'Unknown host_c_dylib_extension for sys.platform={sys.platform}')
+
 all_built_pyd_files = set()
 for compiled_shared_lib in glob.glob(os.path.join(project_root, 'target', 'release', f'*{host_c_dylib_extension}')):
     pyd_compiled_shared_lib = compiled_shared_lib[:-4]+'.pyd'
