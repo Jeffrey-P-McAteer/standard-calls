@@ -156,7 +156,6 @@ Tag: {min_cpython_tag}-abi3-{sys_platform_tag}
 '''.strip().encode('utf-8')))
     
     record_lines.append(f'standard_calls-{version_num}.dist-info/RECORD,,') # Must have a recursive entry too -_-
-    print(f'record_lines = {record_lines}')
     zf.writestr(f'standard_calls-{version_num}.dist-info/RECORD', (os.linesep.join(record_lines).strip()).encode('utf-8') )
 
 print(f'Built {standard_calls_whl_file}')
