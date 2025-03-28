@@ -1,0 +1,18 @@
+[package]
+name = "standard_calls"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "standard_calls"
+crate-type = ["cdylib", "rlib"]
+
+
+[dependencies]
+
+
+[dependencies.pyo3]
+version = "0.24"
+features = ["extension-module", "abi3"]
+
+

@@ -1,6 +1,0 @@
-[package]
-name = "standard_calls"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]

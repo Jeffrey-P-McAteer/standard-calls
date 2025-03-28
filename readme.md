@@ -14,5 +14,8 @@ TODO
 # Building
 
 ```bash
+cargo build --release
+
+python build_and_test.py
 
 ```

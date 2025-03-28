@@ -1,6 +1,7 @@
 # /// script
 # requires-python = ">=3.10"
 # dependencies = [
+#     "standard_calls @ file:///${PROJECT_ROOT}/target/release/standard_calls-0.1.0-cp39-abi3-win_amd64.whl"
 # ]
 # ///
 
