@@ -1,17 +1,16 @@
 use pyo3::prelude::*;
 
-/// Formats the sum of two numbers as string.
-#[pyfunction]
-fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
-    Ok((a + b).to_string())
+#[pyclass]
+pub enum IdentityTypes {
+    Anonymous_PKI,
 }
 
-/// A Python module implemented in Rust. The name of this function must match
-/// the `lib.name` setting in the `Cargo.toml`, else Python will not be able to
-/// import the module.
-#[pymodule]
-fn string_sum(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
-    Ok(())
+
+#[pyfunction]
+pub fn configure_identity(identity_type: IdentityTypes) -> PyResult<String> {
+    eprintln!("TODO implement configure_identity when given {:#?}", identity_type);
+    Ok("Done!".into())
 }
+
+
 
