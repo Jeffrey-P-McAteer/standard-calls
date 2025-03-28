@@ -87,7 +87,7 @@ def record_line_recorder_writestr(zip_file_name, content_bytes):
     sha = hashlib.sha256()
     sha.update(content_bytes)
     record_lines.append(
-        f'{zip_file_name},sha256={base64.urlsafe_b64encode(sha.digest())},{len(content_bytes)}'
+        f'{zip_file_name},sha256={base64.urlsafe_b64encode(sha.digest()).decode("utf-8")},{len(content_bytes)}'
     )
     return content_bytes
 
@@ -98,7 +98,7 @@ def record_line_recorder_write(host_file_name, interior_file_name):
         host_file_bytes = fd.read()
         sha.update(host_file_bytes)
         record_lines.append(
-            f'{interior_file_name},sha256={base64.urlsafe_b64encode(sha.digest())},{len(host_file_bytes)}'
+            f'{interior_file_name},sha256={base64.urlsafe_b64encode(sha.digest()).decode("utf-8")},{len(host_file_bytes)}'
         )
 
 with zipfile.ZipFile(standard_calls_whl_file, "w") as zf:
