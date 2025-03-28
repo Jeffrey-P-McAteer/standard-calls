@@ -167,7 +167,10 @@ print(f'Built {standard_calls_whl_file}')
 time.sleep(0.5)
 
 # Run the first example
-subprocess.run(['uv', 'run', os.path.join(project_root, 'examples', 'example01.py') ], check=True)
+uv_env = dict(os.environ)
+uv_env['UV_NO_CACHE'] = '1'
+uv_cwd = os.path.join(project_root, 'examples')
+subprocess.run(['uv', 'run', '--reinstall', os.path.join(project_root, 'examples', 'example01.py') ], check=True, env=uv_env, cwd=uv_cwd)
 
 # TODO docs generation et al
 
