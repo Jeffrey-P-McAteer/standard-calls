@@ -20,6 +20,12 @@ if not 'PROJECT_ROOT' in os.environ:
     os.environ['PROJECT_ROOT'] = os.path.abspath(os.path.dirname(__file__))
 project_root = os.environ['PROJECT_ROOT']
 
+sys_platform_tag = sysconfig.get_platform()
+sys_platform_tag = sys_platform_tag.replace('-', '_') # Why? Annoying, but file-paths are snake_case and identifiers are hyphen-separated.
+
+if not 'PLATFORM_TAG' in os.environ:
+    os.environ['PLATFORM_TAG'] = sys_platform_tag
+
 for req_bin in ['cargo', 'uv']:
     bin_location = shutil.which(req_bin)
     if not bin_location:
@@ -51,8 +57,6 @@ if len(version_num) < 1:
         version_num = fd.read().strip()
 
 standard_calls_whl_file = None
-sys_platform_tag = sysconfig.get_platform()
-sys_platform_tag = sys_platform_tag.replace('-', '_') # Why? Annoying, but file-paths are snake_case and identifiers are hyphen-separated.
 
 min_cpython_tag = 'cp39'
 
