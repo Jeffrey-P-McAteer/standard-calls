@@ -15,10 +15,8 @@ pub fn configure_identity(identity_type: usize) -> PyResult<String> {
 
 #[pymodule(name="standard_calls")]
 pub fn standard_calls(m: &Bound<'_, PyModule>) -> PyResult<()> {
-    eprintln!("Began adding things!");
     m.add_function(wrap_pyfunction!(configure_identity, m)?)?;
     m.add_class::<IdentityTypes>()?;
-    eprintln!("Done adding things!");
     Ok(())
 }
 

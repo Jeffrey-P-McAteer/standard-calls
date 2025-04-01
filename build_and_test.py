@@ -119,6 +119,12 @@ with zipfile.ZipFile(standard_calls_whl_file, "w") as zf:
         zf.write(built_pyd_file, arcname=f'standard_calls/{os.path.basename(built_pyd_file)}')
         record_line_recorder_write(built_pyd_file, f'standard_calls/{os.path.basename(built_pyd_file)}')
 
+    # We also need a __init__.py under standard_calls/__init__.py which performs an import of the native library,
+    # moving its contents up one so we don't have eg "from datetime import datetime" chaos that has plagued historic native packages.
+    zf.writestr(f'standard_calls/__init__.py', record_line_recorder_writestr(f'standard_calls/__init__.py', f'''
+from standard_calls.standard_calls import *
+'''.strip().encode('utf-8')))
+
     zf.mkdir(f'standard_calls-{version_num}.dist-info')
 
     # Write dist-info/METADATA file. See https://pypi.org/classifiers/ for details

@@ -1,9 +1,9 @@
 [workspace]
 resolver = "2"
 members = [
-  "standard_calls",
-  "standard_calls_server",
-  "standard_calls_client",
+  "standard-calls",
+  "standard-calls_server",
+  "standard-calls_client",
 ]
 
 

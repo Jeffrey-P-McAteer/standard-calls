@@ -9,11 +9,14 @@
 # identity.toml will have to identify hardware or software PKI capabilities.
 # on import read /etc/standard-calls/neighbors.toml, $STANDARD_CALLS_NEIGHBORS_TOML, ~/.config/standard-calls/neighbors.toml
 # on import read /etc/standard-calls/identity.toml, $STANDARD_CALLS_IDENTITY_TOML, ~/.config/standard-calls/identity.toml
+#import standard_calls
 import standard_calls
+
 print(f'standard_calls = {standard_calls}')
-print(f'standard_calls.__dict__ = {standard_calls.__dict__}')
+#print(f'standard_calls.__dict__ = {standard_calls.__dict__}')
 
 # Client regular-usage ideas
+standard_calls.configure_identity(123)
 standard_calls.configure_identity(standard_calls.IdentityTypes.Anonymous_PKI)
 
 for neighbor in standard_calls.get_neighbors():

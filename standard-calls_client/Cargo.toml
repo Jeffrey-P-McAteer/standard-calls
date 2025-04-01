@@ -4,4 +4,4 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-standard_calls = { path = "../standard_calls" }
+standard_calls = { path = "../standard-calls" }
